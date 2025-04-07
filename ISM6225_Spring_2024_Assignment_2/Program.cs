@@ -50,6 +50,9 @@ namespace Assignment_2
             // Question 6: Find Minimum in Rotated Sorted Array
             Console.WriteLine("Question 6:");
             int[] nums5 = { 3, 4, 5, 1, 2 };
+            //int[] nums5 = { 1 }; //edgecase1
+            //int[] nums5 = { 2,2,2,2 }; //edgecase2
+            //int[] nums5 = { 2, 2, 2, 0, 1, 2 }; //edgecase3
             int minElement = FindMin(nums5);
             Console.WriteLine(minElement);
 
@@ -219,7 +222,30 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                int left = 0;
+                int right = nums.Length - 1;
+
+                while (left < right)
+                {
+                    int mid = left + (right - left) / 2;
+
+                    // Check if mid element is greater than rightmost element
+                    if (nums[mid] > nums[right])
+                    {
+                        left = mid + 1; // Minimum is in the right part
+                    }
+                    else if (nums[mid] < nums[right])
+                    {
+                        right = mid; // Minimum is in the left part
+                    }
+                    else
+                    {
+                        right--; // If mid == right, we can't determine the direction, so just move the right pointer
+                    }
+                }
+
+                return nums[left]; // Left will point to the minimum element
+                //return 0; // Placeholder
             }
             catch (Exception)
             {
