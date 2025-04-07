@@ -26,6 +26,9 @@ namespace Assignment_2
             Console.WriteLine("Question 3:");
             int[] nums3 = { 2, 7, 11, 15 };
             int target = 9;
+            //edge case1
+            //int[] nums3 = { 4 };
+            //int target = 9;
             int[] indices = TwoSum(nums3, target);
             Console.WriteLine(string.Join(",", indices));
 
@@ -133,7 +136,20 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new int[0]; // Placeholder
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    for (int j = i + 1; j < nums.Length; j++)
+                    {
+                        if (nums[i] + nums[j] == target)
+                        {
+                            return new int[] { i, j }; // Return the indices of the pair
+                        }
+                    }
+                }
+
+                // Return an empty array if no solution is found
+                return new int[] { };
+                //return new int[0]; // Placeholder
             }
             catch (Exception)
             {
@@ -147,7 +163,11 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                Array.Sort(nums);
+                int n = nums.Length;
+                return Math.Max(nums[n - 1] * nums[n - 2] * nums[n - 3], nums[0] * nums[1] * nums[n - 1]);
+
+                //return 0; // Placeholder
             }
             catch (Exception)
             {
