@@ -35,12 +35,15 @@ namespace Assignment_2
             // Question 4: Find Maximum Product of Three Numbers
             Console.WriteLine("Question 4:");
             int[] nums4 = { 1, 2, 3, 4 };
+            //int[] nums4 = { -10, -10, -1, -3, -76 };//edge case1 all negative
+            //int[] nums4 = { -10, -10, 5, 2 };//edge case2 mix
             int maxProduct = MaximumProduct(nums4);
             Console.WriteLine(maxProduct);
 
             // Question 5: Decimal to Binary Conversion
             Console.WriteLine("Question 5:");
             int decimalNumber = 42;
+            //int decimalNumber = 1;//edgecase1
             string binary = DecimalToBinary(decimalNumber);
             Console.WriteLine(binary);
 
@@ -181,7 +184,28 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return "101010"; // Placeholder
+                // Handle edge case for negative numbers
+                if (decimalNumber < 0)
+                {
+                    return "Its Negative, please enter a positive number";
+                }
+                // Handle edge case for zero
+                if (decimalNumber == 0)
+                {
+                    return "0";
+                }
+
+                string binary = "";
+                while (decimalNumber > 0)
+                {
+                    int remainder = decimalNumber % 2;
+                    binary = remainder + binary; 
+                    decimalNumber /= 2;
+                }
+
+                return binary;
+
+                //return "101010"; // Placeholder
             }
             catch (Exception)
             {
