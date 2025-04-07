@@ -10,12 +10,15 @@ namespace Assignment_2
             // Question 1: Find Missing Numbers in Array
             Console.WriteLine("Question 1:");
             int[] nums1 = { 4, 3, 2, 7, 8, 2, 3, 1 };
+            //int[] nums1 = { 1, 2, 3, 4, 5 }; //edgecase1
             IList<int> missingNumbers = FindMissingNumbers(nums1);
             Console.WriteLine(string.Join(",", missingNumbers));
 
             // Question 2: Sort Array by Parity
             Console.WriteLine("Question 2:");
             int[] nums2 = { 3, 1, 2, 4 };
+            //int[] nums2 = { 2, 4, 6, 8 }; //edgecase1 Only Even Numbers
+            //int[] nums2 = { 1, 3, 5, 7 }; //edgecase2 Only ODD Numbers
             int[] sortedArray = SortArrayByParity(nums2);
             Console.WriteLine(string.Join(",", sortedArray));
 
@@ -63,7 +66,31 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new List<int>(); // Placeholder
+                
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    int index = Math.Abs(nums[i]) - 1;
+                    if (nums[index] > 0)
+                    {
+                        nums[index] = -nums[index]; // Mark this number as seen by negating it
+                    }
+                }
+
+                
+                List<int> result = new List<int>();
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] > 0)
+                    {
+                        result.Add(i + 1); // because index+1 is the missing number
+                    }
+                }
+
+                return result;
+
+
+
+                //return new List<int>(); // Placeholder
             }
             catch (Exception)
             {
@@ -77,7 +104,22 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new int[0]; // Placeholder
+                int evenIndex = 0;
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] % 2 == 0)
+                    {
+                        // Swap nums[i] with nums[evenIndex]
+                        int temp = nums[i];
+                        nums[i] = nums[evenIndex];
+                        nums[evenIndex] = temp;
+                        evenIndex++;
+                    }
+                }
+                return nums;
+
+
+                //return new int[0]; // Placeholder
             }
             catch (Exception)
             {
