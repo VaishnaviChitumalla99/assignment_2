@@ -59,6 +59,8 @@ namespace Assignment_2
             // Question 7: Palindrome Number
             Console.WriteLine("Question 7:");
             int palindromeNumber = 121;
+            //int palindromeNumber = -12; //edge case1
+            //int palindromeNumber = 7; //edge case2
             bool isPalindrome = IsPalindrome(palindromeNumber);
             Console.WriteLine(isPalindrome);
 
@@ -259,7 +261,32 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return false; // Placeholder
+                if (x < 0)
+                {
+                    return false; // Negative numbers can't be palindromes
+                }
+
+                if (x < 10)
+                {
+                    return true; // single digits are palindromes
+                }
+
+                string s = x.ToString();
+                int left = 0;
+                int right = s.Length - 1;
+
+                while (left < right)
+                {
+                    if (s[left] != s[right])
+                    {
+                        return false;
+                    }
+                    left++;
+                    right--;
+                }
+
+                return true;
+                //return false; // Placeholder
             }
             catch (Exception)
             {
