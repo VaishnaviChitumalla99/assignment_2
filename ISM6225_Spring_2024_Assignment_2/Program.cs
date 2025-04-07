@@ -59,7 +59,7 @@ namespace Assignment_2
             // Question 7: Palindrome Number
             Console.WriteLine("Question 7:");
             int palindromeNumber = 121;
-            //int palindromeNumber = -12; //edge case1
+            //int palindromeNumber = -2; //edge case1
             //int palindromeNumber = 7; //edge case2
             bool isPalindrome = IsPalindrome(palindromeNumber);
             Console.WriteLine(isPalindrome);
@@ -67,6 +67,8 @@ namespace Assignment_2
             // Question 8: Fibonacci Number
             Console.WriteLine("Question 8:");
             int n = 4;
+            //int n = 0;//edgecase1
+            //int n = 1;//edgecase2
             int fibonacciNumber = Fibonacci(n);
             Console.WriteLine(fibonacciNumber);
         }
@@ -300,7 +302,24 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                // Base cases for 0th and 1st Fibonacci numbers
+                if (n <= 1)
+                {
+                    return n;  // Returns 0 if n is 0, returns 1 if n is 1
+                }
+
+                int a = 0; //  n = 0
+                int b = 1; //  n = 1
+
+                for (int i = 2; i <= n; i++)
+                {
+                    int temp = a + b;  // Fibonacci number at position i
+                    a = b;             // Update a to the previous Fibonacci number
+                    b = temp;          // Update b to the current Fibonacci number
+                }
+
+                return b;
+                //return 0; // Placeholder
             }
             catch (Exception)
             {
